@@ -1,17 +1,12 @@
-server:
-    port: ${server.port}
-
-jdbc:
-    driver: com.mysql.jdbc.Driver
-    url: ${jdbc.url}
-    user: ${jdbc.user}
-    password: ${jdbc.password}
-    maxPoolSize: ${jdbc.maxPoolSize}
-
-application:
-    name: euler-demo-third
-    sales:
-        tendency:
-            message: ${sales.tendency.message}
-        month:
-            message: ${sales.month.message}
+server.port: ${server.port}
+spring.thymeleaf.cache: false
+server.tomcat.access_log_enabled: true
+server.tomcat.basedir: target/tomcat
+spring.datasource.driverClassName: com.mysql.jdbc.Driver
+spring.datasource.url: ${jdbc.url}
+spring.datasource.username: ${jdbc.user}
+spring.datasource.password: ${jdbc.password}
+spring.datasource.maxPoolSize: ${jdbc.maxPoolSize}
+spring.jpa.hibernate.ddl-auto: update
+spring.jpa.show-sql: true
+application.sales.month.message: \u9500\u552E\u8D8B\u52BF
