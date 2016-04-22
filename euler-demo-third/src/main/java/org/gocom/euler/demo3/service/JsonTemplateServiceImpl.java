@@ -28,7 +28,6 @@ public class JsonTemplateServiceImpl implements JsonTemplateService{
 	@Autowired
 	private JsonTemplateRepository jsonTemplateRepository;
 	
-	@Override
 	public Object buildJson(String key, IJsonBuidler buidler) {
 		JsonTemplateEntity findJsonTemplateByKey = jsonTemplateRepository.findJsonByTemplateKey(key);
 		return buidler.build(findJsonTemplateByKey.getTemplateValue());

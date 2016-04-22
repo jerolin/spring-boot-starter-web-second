@@ -123,7 +123,6 @@ public class SalesItemServiceImpl implements SalesItemService {
 		return result.toArray(new SalesItemSummary[0]);
 	}
 
-	@Override
 	public void deleteMessage(Long id) {
 		salesItemRepository.delete(id);
 	}

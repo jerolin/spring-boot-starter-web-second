@@ -70,7 +70,6 @@ public class HomeController {
 			model.put(itemType.name(), array);
 		}
 		Object buildJson = jsonTemplateService.buildJson("month", new IJsonBuidler() {
-			@Override
 			public Object build(String jsonTemplate) {
 				JSONObject parseObject = JSON.parseObject(jsonTemplate);
 				Object object = parseObject.get("series");
