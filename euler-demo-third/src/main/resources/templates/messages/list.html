@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>销售清单</title>
+</head>
+<body>
+	<h1 layout:fragment="header">销售清单</h1>
+	<div layout:fragment="content" class="container">
+		<div class="pull-right">
+			<a href="form.html" th:href="@{/(form)}">创建销售单</a>
+			<a href="home.html" th:href="@{/}">返回</a>
+		</div>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td>销售单ID</td>
+					<td>产品名称</td>
+					<td>销售阶段</td>
+					<td>销售额</td>
+					<td>更新时间</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${messages.empty}">
+					<td colspan="3">No messages</td>
+				</tr>
+				<tr th:each="message : ${messages}">
+					<td th:text="${message.id}">1</td>
+					<td th:text="${message.product.displayName}">Product</td>
+					<td th:text="${message.type}">purpose</td>
+					<td><a href="view.html" th:href="@{'/item/' + ${message.id} + '/modify'}" th:text="${message.number}"> 1000</a></td>
+					<td th:text="${#calendars.format(message.updateDate)}">July 11,2012 2:17:16 PM CDT</td>
+					<td><a href="view.html" th:href="@{'/item/' + ${message.id} + '/delete'}" th:method="delete">删除</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
