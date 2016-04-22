@@ -1,0 +1,17 @@
+server:
+    port: ${server.port}
+
+jdbc:
+    driver: com.mysql.jdbc.Driver
+    url: ${jdbc.url}
+    user: ${jdbc.user}
+    password: ${jdbc.password}
+    maxPoolSize: ${jdbc.maxPoolSize}
+
+application:
+    name: euler-demo-third
+    sales:
+        tendency:
+            message: ${sales.tendency.message}
+        month:
+            message: ${sales.month.message}
