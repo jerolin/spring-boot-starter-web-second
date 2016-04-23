@@ -9,4 +9,4 @@ spring.datasource.password: ${jdbc.password}
 spring.datasource.maxPoolSize: ${jdbc.maxPoolSize}
 spring.jpa.hibernate.ddl-auto: update
 spring.jpa.show-sql: true
-application.sales.month.message: \u9500\u552E\u8D8B\u52BF
+application.sales.month.message: ${application.sales.month.message}
