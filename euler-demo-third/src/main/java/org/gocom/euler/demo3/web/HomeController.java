@@ -139,12 +139,11 @@ public class HomeController {
 		}
 		ProductEntity product = productService.getByCode("product1");
 		message.setProduct(product);
-		if(0 == message.getId()){
-			message.setCreateById(1);
-			message.setCreateDate(new Date());
-		}
+		message.setCreateById(1);
+		message.setCreateDate(new Date());
 		message.setUpdateById(1);
 		message.setUpdateDate(new Date());
+		message.setCode("item" + message.getId());
 		message = this.salesItemService.save(message);
 		redirect.addFlashAttribute("globalMessage", String.format("Successfully %s a new message", (message.getId() == 0 ? "created" : "update")));
 		return new ModelAndView("redirect:/view/{message.id}", "message.id", message.getId());

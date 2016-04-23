@@ -1,12 +1,7 @@
 server.port: ${server.port}
-spring.thymeleaf.cache: false
-server.tomcat.access_log_enabled: true
-server.tomcat.basedir: target/tomcat
 spring.datasource.driverClassName: com.mysql.jdbc.Driver
 spring.datasource.url: ${jdbc.url}
 spring.datasource.username: ${jdbc.user}
 spring.datasource.password: ${jdbc.password}
 spring.datasource.maxPoolSize: ${jdbc.maxPoolSize}
-spring.jpa.hibernate.ddl-auto: update
-spring.jpa.show-sql: true
 application.sales.month.message: ${application.sales.month.message}
