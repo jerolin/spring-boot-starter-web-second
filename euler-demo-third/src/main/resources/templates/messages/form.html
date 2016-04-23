@@ -18,9 +18,9 @@
 				<a th:href="@{/list}" href="messages.html"> 返回列表 </a>
 			</div>
 				<label for="type">销售单ID：</label> 
-				<input type="text" th:field="*{id}" disabled="disabled"/> 
+				<input type="text" th:field="*{id}" readonly="readonly"/> 
 				<label for="type">产品名称：Product</label>
-				<input type="text" disabled="disabled" value="Product1"/> 
+				<input type="text" readonly="readonly" value="Product1"/> 
 				<label>销售阶段：</label> 
 		        <select th:field="*{type}">   
 		        	<option value="purpose" selected="selected">purpose</option>   

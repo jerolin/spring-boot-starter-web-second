@@ -146,7 +146,7 @@ public class HomeController {
 		message.setUpdateById(1);
 		message.setUpdateDate(new Date());
 		message = this.salesItemService.save(message);
-		redirect.addFlashAttribute("globalMessage", "Successfully created a new message");
+		redirect.addFlashAttribute("globalMessage", String.format("Successfully %s a new message", (message.getId() == 0 ? "created" : "update")));
 		return new ModelAndView("redirect:/view/{message.id}", "message.id", message.getId());
 	}
 	
