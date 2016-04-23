@@ -31,8 +31,8 @@ public interface SalesItemRepository extends JpaRepository<SalesItemEntity, Long
 			+ "from SalesItemEntity s left outer join s.product p where s.product = ?1 group by s.type")
 	List<SalesItemSummary> findByProduct(ProductEntity product);
 	
-	@Query("select s.product as product, s.type as type, sum(s.number) as sumNumber, month(s.createDate) as month "
-			+ "from SalesItemEntity s left outer join s.product p where s.product = ?1 and s.type = ?2 group by month(s.createDate) order by s.createDate")
+	@Query("select s.product as product, s.type as type, sum(s.number) as sumNumber, month(s.updateDate) as month "
+			+ "from SalesItemEntity s left outer join s.product p where s.product = ?1 and s.type = ?2 group by month(s.updateDate) order by s.updateDate")
 	List<SalesItemSummary> findByProduct(ProductEntity product,String itemType);
 	
 }
