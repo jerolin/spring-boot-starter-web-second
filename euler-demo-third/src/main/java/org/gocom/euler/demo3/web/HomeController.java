@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.gocom.euler.demo3.entity.ProductEntity;
 import org.gocom.euler.demo3.entity.SalesItemEntity;
 import org.gocom.euler.demo3.entity.SalesItemSummary;
@@ -138,8 +139,10 @@ public class HomeController {
 		}
 		ProductEntity product = productService.getByCode("product1");
 		message.setProduct(product);
-		message.setCreateById(1);
-		message.setCreateDate(new Date());
+		if(0 == message.getId()){
+			message.setCreateById(1);
+			message.setCreateDate(new Date());
+		}
 		message.setUpdateById(1);
 		message.setUpdateDate(new Date());
 		message = this.salesItemService.save(message);

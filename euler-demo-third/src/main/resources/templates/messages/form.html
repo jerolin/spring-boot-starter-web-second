@@ -17,15 +17,18 @@
 			<div class="pull-right">
 				<a th:href="@{/list}" href="messages.html"> 返回列表 </a>
 			</div>
-				<label>产品：Product1</label> 
-				<label for="type">销售阶段</label> 
-		        <select  th:field="*{type}">   
+				<label for="type">销售单ID：</label> 
+				<input type="text" th:field="*{id}" disabled="disabled"/> 
+				<label for="type">产品名称：Product</label>
+				<input type="text" disabled="disabled" value="Product1"/> 
+				<label>销售阶段：</label> 
+		        <select th:field="*{type}">   
 		        	<option value="purpose" selected="selected">purpose</option>   
 		        	<option value="business">business</option>   
 		        	<option value="subscribe">subscribe</option>   
 		        	<option value="complete">complete</option>   
 		        </select>
-				<label for="type">销售额</label> 
+				<label for="type">销售额：</label> 
 				<input type="text" th:field="*{number}" /> 
 			<div class="form-actions">
 				<input type="submit" value="Save" />
