@@ -17,20 +17,16 @@ import org.gocom.euler.demo3.service.ProductService;
 import org.gocom.euler.demo3.service.SalesItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 @org.springframework.web.bind.annotation.RestController
-@RequestMapping("/")
+@RequestMapping("/model")
 public class RestController {
 	@Autowired
 	private SalesItemService salesItemService;
@@ -85,58 +81,23 @@ public class RestController {
 				return parseObject.toJSONString();
 			}
 		});
-//		model.put("echartJson", buildJson);
-//		return new ModelAndView("messages/home",model);
 		return buildJson;
 	}
 	
-	@RequestMapping("list")
-	public ModelAndView list() {
+	@RequestMapping("/list")
+	public String list() {
 		List<SalesItemEntity> messages = this.salesItemService.findAll();
-		return new ModelAndView("messages/list", "messages", messages);
+		return JSONObject.toJSONString(messages);
 	}
 	
-	/**
-	 * 测试拦截器
-	 * @param name
-	 * @param password
-	 * @return
-	 */
-	@RequestMapping("")
-	public ModelAndView home(Map<String, Object> model){
-		return new ModelAndView("messages/home");
-	}
-	
-	/**
-	 * 跳转到创建界面
-	 * @param message
-	 * @return
-	 */
-	@RequestMapping(params = "form", method = RequestMethod.GET)
-	public ModelAndView toForm(@ModelAttribute SalesItemEntity message) {
-		return new ModelAndView("messages/form", "message", message);
-	}
-	
-	/**
-	 * 跳转详细信息界面
-	 * @param message
-	 * @return
-	 */
-	@RequestMapping(value = "view/{id}", method = RequestMethod.GET)
-	public ModelAndView view(@PathVariable("id") SalesItemEntity message) {
-		return new ModelAndView("messages/view", "message", message);
-	}
 	
 	/**
 	 * 创建请求
 	 * @param message
 	 * @return
 	 */
-	@RequestMapping(params = "item", method = RequestMethod.POST)
-	public ModelAndView createItem(@Valid SalesItemEntity message, BindingResult result, RedirectAttributes redirect) {
-		if (result.hasErrors()) {
-			return new ModelAndView("messages/form", "formErrors", result.getAllErrors());
-		}
+	@RequestMapping(value = "/item", method = RequestMethod.POST)
+	public SalesItemEntity createItem(@Valid SalesItemEntity message) {
 		ProductEntity product = productService.getByCode("product1");
 		message.setProduct(product);
 		message.setCreateById(1);
@@ -145,18 +106,13 @@ public class RestController {
 		message.setUpdateDate(new Date());
 		message.setCode("item" + message.getId());
 		message = this.salesItemService.save(message);
-		redirect.addFlashAttribute("globalMessage", String.format("Successfully %s a new message", (message.getId() == 0 ? "created" : "update")));
-		return new ModelAndView("redirect:/view/{message.id}", "message.id", message.getId());
+		return message;
+		
 	}
 	
-	@RequestMapping(value = "item/{id}/delete")
-	public ModelAndView delete(@PathVariable("id") Long id) {
+	@RequestMapping(value = "/item/{id}", method = RequestMethod.DELETE)
+	public boolean delete(@PathVariable("id") Long id) {
 		this.salesItemService.deleteMessage(id);
-		return list();
-	}
-
-	@RequestMapping(value = "item/{id}/modify")
-	public ModelAndView modifyForm(@PathVariable("id") SalesItemEntity message) {
-		return new ModelAndView("messages/form", "message", message);
+		return true;
 	}
 }
