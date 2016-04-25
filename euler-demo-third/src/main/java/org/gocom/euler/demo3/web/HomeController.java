@@ -53,7 +53,6 @@ public class HomeController {
 	 */
 	@RequestMapping("/month")
 	public Object salesMonth(final Map<String, Object> model){//读取并获得json信息
-		model.put("title", salesMonthMessage);
 		String productName= "product1";
 		ProductEntity byCode = productService.getByCode(productName);
 		for (SalesItemType itemType : SalesItemType.values()){
@@ -82,7 +81,7 @@ public class HomeController {
 						object2.put("data", type);
 					}
 				}
-				return parseObject;
+				return parseObject.toJSONString();
 			}
 		});
 //		model.put("echartJson", buildJson);
@@ -103,8 +102,8 @@ public class HomeController {
 	 * @return
 	 */
 	@RequestMapping("")
-	public Object home(Map<String, Object> model){
-		return salesMonth(model);
+	public ModelAndView home(Map<String, Object> model){
+		return new ModelAndView("messages/home");
 	}
 	
 	/**
