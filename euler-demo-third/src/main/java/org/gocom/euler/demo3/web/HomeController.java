@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.apache.commons.lang3.StringUtils;
 import org.gocom.euler.demo3.entity.ProductEntity;
 import org.gocom.euler.demo3.entity.SalesItemEntity;
 import org.gocom.euler.demo3.entity.SalesItemSummary;
@@ -53,7 +52,7 @@ public class HomeController {
 	 * @return
 	 */
 	@RequestMapping("/month")
-	public ModelAndView salesMonth(final Map<String, Object> model){//读取并获得json信息
+	public Object salesMonth(final Map<String, Object> model){//读取并获得json信息
 		model.put("title", salesMonthMessage);
 		String productName= "product1";
 		ProductEntity byCode = productService.getByCode(productName);
@@ -86,8 +85,9 @@ public class HomeController {
 				return parseObject;
 			}
 		});
-		model.put("echartJson", buildJson);
-		return new ModelAndView("messages/home",model);
+//		model.put("echartJson", buildJson);
+//		return new ModelAndView("messages/home",model);
+		return buildJson;
 	}
 	
 	@RequestMapping("list")
@@ -103,7 +103,7 @@ public class HomeController {
 	 * @return
 	 */
 	@RequestMapping("")
-	public ModelAndView home(Map<String, Object> model){
+	public Object home(Map<String, Object> model){
 		return salesMonth(model);
 	}
 	
