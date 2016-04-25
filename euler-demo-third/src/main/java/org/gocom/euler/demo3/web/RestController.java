@@ -1,6 +1,7 @@
 package org.gocom.euler.demo3.web;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,6 @@ import org.gocom.euler.demo3.service.ProductService;
 import org.gocom.euler.demo3.service.SalesItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,9 +29,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
-@Controller
-@RequestMapping("/sssss")
-public class HomeController {
+@org.springframework.web.bind.annotation.RestController
+@RequestMapping("/")
+public class RestController {
 	@Autowired
 	private SalesItemService salesItemService;
 	
@@ -52,7 +52,8 @@ public class HomeController {
 	 * @return
 	 */
 	@RequestMapping("/month")
-	public Object salesMonth(final Map<String, Object> model){//读取并获得json信息
+	public Object salesMonth(){//读取并获得json信息
+		final Map<String, Object> model = new HashMap<String, Object>();
 		String productName= "product1";
 		ProductEntity byCode = productService.getByCode(productName);
 		for (SalesItemType itemType : SalesItemType.values()){
