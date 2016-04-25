@@ -87,6 +87,9 @@ public class RestController {
 	@RequestMapping("/list")
 	public String list() {
 		List<SalesItemEntity> messages = this.salesItemService.findAll();
+		for (SalesItemEntity salesItemEntity : messages) {
+			salesItemEntity.setProduct(null);
+		}
 		return JSONObject.toJSONString(messages);
 	}
 	
