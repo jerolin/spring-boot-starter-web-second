@@ -9,7 +9,7 @@ echo "***********"
 PWD=`pwd`
 echo PWD=$PWD
 echo "***********"
-CMD="JAVA -Xms512M -Xmx512M -XX:PermSize=64M -XX:MaxPermSize=128M -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:CMSInitiatingOccupancyFraction=70 -XX:+CMSParallelRemarkEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+CMSClassUnloadingEnabled -XX:SurvivorRatio=8 -XX:+DisableExplicitGC -XX:-OmitStackTraceInFastThrow -Djava.net.preferIPv4Stack=true -jar *.jar"
+CMD="java -Xms512M -Xmx512M -XX:PermSize=64M -XX:MaxPermSize=128M -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:CMSInitiatingOccupancyFraction=70 -XX:+CMSParallelRemarkEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+CMSClassUnloadingEnabled -XX:SurvivorRatio=8 -XX:+DisableExplicitGC -XX:-OmitStackTraceInFastThrow -Djava.net.preferIPv4Stack=true -jar *.jar"
 echo CMD=$CMD
 $CMD
 echo $!>$PID_FILE

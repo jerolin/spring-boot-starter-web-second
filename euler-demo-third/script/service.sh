@@ -1,10 +1,10 @@
-#!/sh/sh
+#!/bin/bash
 
 PWD=$(cd "$(dirname "$0")"; pwd)
 echo PWD="$PWD"
 BEGIN_TIME=$(date +%s)
 ACTION=$1
-chmod +x "$PWD/sh/find-java.sh"
+# chmod +x "$PWD/sh/find-java.sh"
 chmod +x "$PWD/sh/start.sh"
 chmod +x "$PWD/sh/stop.sh"
 chmod +x "$PWD/sh/status.sh"

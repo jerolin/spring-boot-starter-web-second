@@ -101,24 +101,7 @@
                 </executions>
             </plugin>
             
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <copy tofile="../target/${parent.artifactId}-${version}.zip" 
-                                    file="target/${artifactId}-${version}.zip" overwrite="true"/>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
         </plugins>
     </build>
 </project>

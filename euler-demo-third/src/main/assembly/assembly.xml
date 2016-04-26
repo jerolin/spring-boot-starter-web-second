@@ -20,5 +20,10 @@
             <outputDirectory>/sql</outputDirectory>
             <fileMode>0755</fileMode>
         </fileSet>
+        <fileSet>
+            <directory>script</directory>
+            <outputDirectory>/</outputDirectory>
+            <fileMode>0755</fileMode>
+        </fileSet>
     </fileSets>
 </assembly>

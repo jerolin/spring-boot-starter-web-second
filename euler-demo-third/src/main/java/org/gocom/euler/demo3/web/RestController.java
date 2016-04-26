@@ -100,7 +100,7 @@ public class RestController {
 	 * @return
 	 */
 	@RequestMapping(value = "/item", method = RequestMethod.POST)
-	public SalesItemEntity createItem(@Valid SalesItemEntity message) {
+	public boolean createItem(@Valid SalesItemEntity message) {
 		ProductEntity product = productService.getByCode("product1");
 		message.setProduct(product);
 		message.setCreateById(1);
@@ -109,8 +109,7 @@ public class RestController {
 		message.setUpdateDate(new Date());
 		message.setCode("item" + message.getId());
 		message = this.salesItemService.save(message);
-		return message;
-		
+		return true;
 	}
 	
 	@RequestMapping(value = "/item/{id}", method = RequestMethod.DELETE)

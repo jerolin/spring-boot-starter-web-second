@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-	layout:decorator="layout">
+<html>
 <head>
-<title th:text="${title}">销售概览</title>
+<title>销售概览</title>
 </head>
 <body>
-	<h1 layout:fragment="header"  th:text="${title}">销售概览</h1>
-	<div layout:fragment="content" class="container">
+	<div class="container">
 		<div class="pull-right">
-			<a href="home.html" th:href="@{/month}">销售趋势</a>
-			<a href="list.html" th:href="@{/list}">销售清单</a>
+			<a href="/">销售趋势</a>
+			<a href="list.html">销售清单</a>
 		</div>
 		<!-- center content -->
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -18,7 +15,8 @@
 			    <div id="main" style="height:550px"></div>
 			    <!-- ECharts单文件引入 -->
 			    <script src="/build/dist/echarts.js"></script>
-			    <script type="text/javascript" th:inline="javascript">
+				<script type="text/javascript" src="/easyui/jquery.min.js"></script>
+			    <script type="text/javascript">
 			    /*<![CDATA[*/
 			        // 路径配置
 			        require.config({
@@ -37,12 +35,22 @@
 			            function (ec) {
 			                // 基于准备好的dom，初始化echarts图表
 			                var myChart = ec.init(document.getElementById('main'),'macarons'); 
-			                
-			                var option = /*[[${echartJson}]]*/;
 			                //窗体自适应    
 			 				window.onresize = myChart.resize;
-			                // 为echarts对象加载数据 
-			                myChart.setOption(option); 
+			                
+			 				$.ajax( { 
+			 				    url:'/model/month',// 跳转到 action 
+			 				    type:'post', 
+			 				    cache:false,
+			 				    dataType:'json', 
+			 				    success:function(data) {
+					                // 为echarts对象加载数据 
+					                myChart.setOption(data); 
+			 				     }, 
+			 				     error : function() { 
+			 				          alert("服务器异常，请重试！"); 
+			 				     } 
+			 				});
 			            }
 			        );
 				    /*]]>*/
